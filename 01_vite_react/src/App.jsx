@@ -6,7 +6,7 @@ function App() {
 
   return (
     
-      <h1>Aman Girdhar learning React now</h1>
+    <h1>Aman Girdhar learning Reasct now</h1>
     
   )
 }
