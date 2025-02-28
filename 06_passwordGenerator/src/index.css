@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#button:hover{
+  color: black;
+  background-color: gray;
+  box-shadow: 1px;
+}

@@ -1,0 +1,13 @@
+#inner{
+  overflow:hidden;
+  height:25px;
+  background-color: green;
+  color: white;
+}
+#outer{
+  overflow: hidden;
+  border: 1px solid black;
+  height: 15px;
+  border-radius: 10px;
+  
+}
