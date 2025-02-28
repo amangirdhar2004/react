@@ -1,4 +1,4 @@
-import { useState, useEffect,useCallback} from 'react'
+import { useState, useEffect,useCallback,useRef} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -9,6 +9,7 @@ function App() {
   const [numAllowed,setNumAllowed]=useState(true)
   const [charAllowed,setCharAllowed]=useState(true)
   const [password, setPassword]=useState("")
+  const passRef=useRef(null)
   const passwordGenerator= useCallback(()=>{
     let str='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         let pass=''
@@ -20,6 +21,13 @@ function App() {
         setPassword(pass)
   },[length,numAllowed,charAllowed])
 
+  const copyPassToClipboard= useCallback(()=>{
+    window.navigator.clipboard.writeText(password)
+    passRef.current?.focus()
+    passRef.current?.select()
+  },[password])
+
+
   useEffect(()=>{passwordGenerator()}, [length, numAllowed, charAllowed])
 
   return (
@@ -30,9 +38,9 @@ function App() {
         <br/>
         <span><input 
         type='text'
-        className='w-4/6 h-12 text-black' value={password}>
+        className='w-4/6 h-12 text-black' value={password} ref={passRef}>
         </input>
-        <button id="button" className='bg-orange-500 h-14 rounded-xl w-16'>Copy</button></span>
+        <button id="button" onClick={copyPassToClipboard} className='bg-orange-500 h-14 rounded-xl w-16'>Copy</button></span>
         <br/><br/>
         <label className='text-white ml-2'>Length {length}<input value={length} 
         onChange={(e) => setLength(Number(e.target.value))} 
